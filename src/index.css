@@ -1,57 +1,182 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
 
-.text-stroke-2 {
-  -webkit-text-stroke: 1px #443;
-  text-stroke: 1px #443;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield; /* For Firefox */
-  -webkit-appearance: none; /* For Chrome, Safari, and Edge */
-  appearance: none; /* Standard property */
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none; /* Remove spin buttons in WebKit browsers */
-  margin: 0; /* Optional: Remove default margin */
-}
+@custom-variant dark (&:is(.dark *));
 html {
   scroll-behavior: smooth;
 }
-@keyframes aboutImage {
-  0%,
-  100% {
-    transform: scale(0.9);
-    border-radius: 4% 95% 6% 95% / 95% 4% 92% 5%;
+.quattrocento-regular {
+  font-family: "Quattrocento", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.quattrocento-bold {
+  font-family: "Quattrocento", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+:root {
+  /* Base tones */
+  --background: #f7f4ef;
+  --foreground: #1a1a1a;
+  /* Surfaces */
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  /* Brand colors */
+  --primary: #d4a574;
+  --primary-dark: #b98d5f;
+  --primary-foreground: #ffffff;
+  /* Supporting tones */
+  --accent: #35584a; /* muted green for balance */
+  --accent-foreground: #ffffff;
+  --secondary: #f0e7db;
+  --secondary-foreground: #1a1a1a;
+  /* Muted / Neutral tones */
+  --muted: #6b7280;
+  --muted-foreground: #555b66;
+  /* Feedback colors */
+  --destructive: #e15b5b;
+  --border: #e5e2dc;
+  --input: #e8e5e0;
+  --ring: #d4a574;
+  /* Popovers & Tooltips */
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  /* Charts / Data Visuals (harmonized palette) */
+  --chart-1: #d4a574;
+  --chart-2: #5f8670;
+  --chart-3: #4c7399;
+  --chart-4: #b06f4f;
+  --chart-5: #c4c756;
+  /* Sidebar / Panels */
+  --sidebar: #faf7f2;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #d4a574;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ece6de;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e4ded6;
+  --sidebar-ring: #d4a574;
+  /* Gradient colors */
+  --gradientcolor-primary: linear-gradient(135deg, #d4a574 0%, #b98d5f 100%);
+  --gradientcolor-secondary: linear-gradient(135deg, #f0e7db 0%, #e8dfd1 100%);
+  --gradientcolor-accent: linear-gradient(135deg, #35584a 0%, #2a463a 100%);
+  --gradientcolor-hero: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  --gradientcolor-section: linear-gradient(
+    180deg,
+    var(--background) 0%,
+    var(--secondary) 100%
+  );
+  --gradientcolor-card: linear-gradient(145deg, #ffffff 0%, #faf7f2 100%);
+  --radius: 0.75rem;
+}
+
+.dark {
+  /* Base tones */
+  --background: #121212;
+  --foreground: #e5e7eb;
+  /* Surfaces */
+  --card: #1b1b1b;
+  --card-foreground: #f3f3f3;
+  /* Brand colors */
+  --primary: #d4a574;
+  --primary-dark: #b8935f;
+  --primary-foreground: #1b1b1b;
+  /* Supporting tones */
+  --accent: #3d5a4d;
+  --accent-foreground: #f3f3f3;
+  --secondary: #2a2a2a;
+  --secondary-foreground: #f3f3f3;
+  /* Muted / Neutral tones */
+  --muted: #8e8e93;
+  --muted-foreground: #b3b3b3;
+  /* Feedback colors */
+  --destructive: #f76d6d;
+  --border: #2c2c2c;
+  --input: #2f2f2f;
+  --ring: #d4a574;
+  /* Popovers & Tooltips */
+  --popover: #1e1e1e;
+  --popover-foreground: #f3f3f3;
+  /* Charts / Data Visuals */
+  --chart-1: #d4a574;
+  --chart-2: #89b08c;
+  --chart-3: #547ca3;
+  --chart-4: #c6845a;
+  --chart-5: #d6d165;
+  /* Sidebar / Panels */
+  --sidebar: #181818;
+  --sidebar-foreground: #e5e7eb;
+  --sidebar-primary: #d4a574;
+  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-accent: #252525;
+  --sidebar-accent-foreground: #e5e7eb;
+  --sidebar-border: #2a2a2a;
+  --sidebar-ring: #d4a574;
+  /* Gradient colors for dark mode */
+  --gradientcolor-primary: linear-gradient(135deg, #d4a574 0%, #b8935f 100%);
+  --gradientcolor-secondary: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  --gradientcolor-accent: linear-gradient(135deg, #3d5a4d 0%, #2d4438 100%);
+  --gradientcolor-hero: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  --gradientcolor-section: linear-gradient(
+    180deg,
+    var(--background) 0%,
+    var(--secondary) 100%
+  );
+  --gradientcolor-card: linear-gradient(145deg, #1b1b1b 0%, #181818 100%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  50% {
-    transform: scale(0.8);
-    border-radius: 95% 4% 97% 5% / 4% 94% 3% 95%;
+  body {
+    @apply bg-background text-foreground;
   }
-}
-.animate-about-image {
-  animation: aboutImage 4s linear infinite;
-}
-/* width */
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
